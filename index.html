@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tesla | Model 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar__container container">
+      <div class="navbar__logo">
+        <img src="assets/images/logo.png" alt="Tesla">
+      </div>
+      <nav class="navbar__nav">
+        <a href="#" class="navbar__link">Vehicles</a>
+        <a href="#" class="navbar__link">Energy</a>
+        <a href="#" class="navbar__link">Charging</a>
+        <a href="#" class="navbar__link">Discover</a>
+        <a href="#" class="navbar__link">Shop</a>
+      </nav>
+      <div class="navbar__actions">
+        <a href="#" class="btn btn--primary">Жолоодож үзэх</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero / Header -->
+  <section class="hero">
+    <img src="assets/images/hero-model3.png" alt="Tesla Model 3" class="hero__bg">
+    <div class="hero__content container">
+      <div class="hero__column">
+        <h1 class="hero__title">Model 3</h1>
+        <p class="hero__subtitle">1.99% APR Available</p>
+      </div>
+      <div class="hero__actions">
+        <a href="#" class="btn btn--primary">Одоо захиалах</a>
+        <a href="#" class="btn btn--secondary">Дэлгэнгүй үзэх</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Self-Driving feature -->
+  <section class="section">
+    <div class="container">
+      <div class="fsd-card">
+        <div class="fsd-card__content">
+          <div class="fsd-card__top">
+            <div class="fsd-card__title-block">
+              <h2 class="heading-3">Full Self-Driving (Supervised)</h2>
+              <p class="text-medium">Makes every drive easier. Subscribe for $99/mo.1</p>
+            </div>
+            <div class="fsd-card__stats">
+              <div class="fsd-stat">
+                <p class="heading-4">7x</p>
+                <p class="text-regular">Fewer Collisions</p>
+              </div>
+              <div class="fsd-stat">
+                <p class="heading-4">13,534,294,722</p>
+                <p class="text-regular">Miles Driven</p>
+              </div>
+            </div>
+          </div>
+          <div class="fsd-card__actions">
+            <a href="#" class="btn btn--black">Жолоодож үзэх цаг авах</a>
+            <a href="#" class="btn btn--secondary">Дэлгэрэнгүй</a>
+          </div>
+        </div>
+        <div class="fsd-card__image">
+          <img src="assets/images/fsd.png" alt="Full Self-Driving dashboard view">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product slider 1: Vehicles -->
+  <section class="section">
+    <div class="container">
+      <div class="product-slider">
+        <div class="product-slider__track">
+          <article class="product-card">
+            <img src="assets/images/product-modely-l.png" alt="Model Y L Premium" class="product-card__bg">
+            <div class="product-card__top">
+              <p class="tagline">Long Wheelbase Midsize SUV</p>
+              <h3 class="heading-2">Model Y L Premium</h3>
+            </div>
+            <div class="product-card__bottom">
+              <p class="text-medium-sb">Starting at $61,990</p>
+              <div class="product-card__actions">
+                <a href="#" class="btn btn--primary">Одоо захиалах</a>
+                <a href="#" class="btn btn--secondary">Дэлгэрэнгүй</a>
+              </div>
+            </div>
+          </article>
+          <article class="product-card">
+            <img src="assets/images/product-model3.png" alt="Model 3" class="product-card__bg">
+            <div class="product-card__top">
+              <p class="tagline">Sport Sedan</p>
+              <h3 class="heading-2">Model 3</h3>
+            </div>
+            <div class="product-card__bottom">
+              <p class="text-medium-sb">Lease From $419/mo</p>
+              <div class="product-card__actions">
+                <a href="#" class="btn btn--primary">Одоо захиалах</a>
+                <a href="#" class="btn btn--secondary">Дэлгэрэнгүй</a>
+              </div>
+            </div>
+          </article>
+          <article class="product-card">
+            <img src="assets/images/product-modely.png" alt="Model Y" class="product-card__bg">
+            <div class="product-card__top">
+              <p class="tagline">Midsize SUV</p>
+              <h3 class="heading-2">Model Y</h3>
+            </div>
+            <div class="product-card__bottom">
+              <p class="text-medium-sb">Lease From $499/mo</p>
+              <div class="product-card__actions">
+                <a href="#" class="btn btn--primary">Одоо захиалах</a>
+                <a href="#" class="btn btn--secondary">Дэлгэрэнгүй</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="product-slider__controls">
+          <div class="slider-dots">
+            <span class="slider-dots__dot slider-dots__dot--active"></span>
+            <span class="slider-dots__dot"></span>
+            <span class="slider-dots__dot"></span>
+          </div>
+          <div class="slider-buttons">
+            <button type="button" class="slider-arrow" aria-label="Previous">
+              <img src="assets/icons/arrow-back.svg" alt="">
+            </button>
+            <button type="button" class="slider-arrow" aria-label="Next">
+              <img src="assets/icons/arrow-forward.svg" alt="">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offers / Inventory -->
+  <section class="section">
+    <div class="container">
+      <div class="info-row">
+        <div class="info-card">
+          <div class="info-card__content">
+            <div class="info-card__text">
+              <h3 class="heading-5">Current Offers</h3>
+              <p class="text-regular">Explore limited-time offers on Tesla vehicles.</p>
+            </div>
+            <div class="info-card__actions">
+              <a href="#" class="btn btn--secondary">Дэлгэрэнгүй</a>
+            </div>
+          </div>
+          <div class="info-card__image">
+            <img src="assets/images/offers-cars.png" alt="Tesla vehicle lineup">
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card__content">
+            <div class="info-card__text">
+              <h3 class="heading-5">Inventory</h3>
+              <p class="text-regular">Find new and Certified Pre-Owned Tesla vehicles available immediately.</p>
+            </div>
+            <div class="info-card__actions info-card__actions--multi">
+              <a href="#" class="btn btn--secondary">New</a>
+              <a href="#" class="btn btn--secondary">Pre-Owned</a>
+            </div>
+          </div>
+          <div class="info-card__image">
+            <img src="assets/images/inventory-cars.png" alt="Tesla vehicle inventory">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Map -->
+  <section class="section">
+    <div class="container">
+      <div class="map-card">
+        <img src="assets/images/map.png" alt="Map of Tesla Supercharger and Destination Charger locations across the United States">
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats / Find Your Charge -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="stats">
+        <div class="stats__intro">
+          <div class="stats__title-block">
+            <h2 class="heading-2">Find Your Charge</h2>
+            <p class="text-medium">View the network of Tesla Superchargers and Destination Chargers available near you.</p>
+          </div>
+          <div class="stats__actions">
+            <a href="#" class="btn btn--black">View Network</a>
+            <a href="#" class="btn btn--secondary">Дэлгэрэнгүй</a>
+          </div>
+        </div>
+        <div class="stats__numbers">
+          <div class="stat">
+            <div class="stat__top">
+              <p class="heading-2">38,490</p>
+              <img src="assets/icons/stat-supercharger.svg" alt="" class="stat__icon">
+            </div>
+            <p class="heading-6">Superchargers</p>
+          </div>
+          <div class="stat">
+            <div class="stat__top">
+              <p class="heading-2">410</p>
+              <img src="assets/icons/stat-destination.svg" alt="" class="stat__icon">
+            </div>
+            <p class="heading-6">Destination Chargers</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product slider 2: Energy -->
+  <section class="section">
+    <div class="container">
+      <div class="product-slider">
+        <div class="product-slider__track">
+          <article class="product-card">
+            <img src="assets/images/product-solar.png" alt="Solar Panels" class="product-card__bg">
+            <div class="product-card__top">
+              <h3 class="heading-2">Solar Panels</h3>
+            </div>
+            <div class="product-card__bottom">
+              <p class="text-medium-sb">Power Your Home and Reduce Your Electricity Bil</p>
+              <div class="product-card__actions">
+                <a href="#" class="btn btn--primary">Одоо захиалах</a>
+                <a href="#" class="btn btn--secondary">Дэлгэрэнгүй</a>
+              </div>
+            </div>
+          </article>
+          <article class="product-card">
+            <img src="assets/images/product-powerwall.png" alt="Powerwall" class="product-card__bg">
+            <div class="product-card__top">
+              <h3 class="heading-2">Powerwall</h3>
+            </div>
+            <div class="product-card__bottom">
+              <p class="text-medium-sb">Keep Your Lights On During Outages</p>
+              <div class="product-card__actions">
+                <a href="#" class="btn btn--primary">Одоо захиалах</a>
+                <a href="#" class="btn btn--secondary">Дэлгэрэнгүй</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="product-slider__controls">
+          <div class="slider-dots">
+            <span class="slider-dots__dot slider-dots__dot--active"></span>
+            <span class="slider-dots__dot"></span>
+          </div>
+          <div class="slider-buttons">
+            <button type="button" class="slider-arrow" aria-label="Previous">
+              <img src="assets/icons/arrow-back2.svg" alt="">
+            </button>
+            <button type="button" class="slider-arrow" aria-label="Next">
+              <img src="assets/icons/arrow-forward2.svg" alt="">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__credits">
+        <div class="footer__divider"></div>
+        <div class="footer__row">
+          <div class="footer__links">
+            <a href="#">Tesla © 2026</a>
+            <a href="#">Privacy policy</a>
+            <a href="#">Vehicle Recalls</a>
+            <a href="#">Contacts</a>
+            <a href="#">News</a>
+            <a href="#">Get Updates</a>
+            <a href="#">Locations</a>
+            <a href="#">Learn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
