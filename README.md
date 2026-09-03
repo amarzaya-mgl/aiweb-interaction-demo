@@ -19,6 +19,8 @@ project/
 ├── motion-spotlight-hover.js    # opt-in enhancement, see below
 ├── motion-morphing-tabs.css     # opt-in enhancement, see below
 ├── motion-morphing-tabs.js      # opt-in enhancement, see below
+├── motion-scroll-progress.css   # opt-in enhancement, see below
+├── motion-scroll-progress.js    # opt-in enhancement, see below
 └── README.md
 ```
 
@@ -87,6 +89,20 @@ Inventory card дотор "New" / "Pre-Owned" хоёр товчийг accessible
 - `prefers-reduced-motion: reduce` үед indicator transition-гүйгээр шууд сонгогдсон байрлал руу шилждэг (`transition-duration: 0s`), label crossfade мөн идэвхгүй.
 - Focus-ийг royal-blue `outline` (`:focus-visible`)-ээр харуулдаг, эргэн тойрны card content (heading, text, image) хөдлөхгүй.
 - **Бүрэн тусгаарлагдсан**: `motion-morphing-tabs.css`/`.js`-ийн `<link>`/`<script>` мөрүүд эсвэл 2 файлыг устгавал tab-ууд энгийн (indicator-гүй, `aria-selected` toggle-гүй) товч хэлбэрээрээ үлдэнэ — markup дахь `role`/`aria-*` attribute-ууд өөрөө хор хөнөөлгүй, зөвхөн CSS/JS engine байхгүй бол тэдгээр нь нөлөөгүй болно.
+
+### Scroll Progress indicator (`motion-scroll-progress.css` / `.js`)
+
+Viewport-ийн дээд ирмэгт бүх content-ийн дээр байрлах 3px fixed bar — хуудсыг хэр их scroll хийснийг харуулна. Markup-д ямар ч өөрчлөлт ороогүй: `.scroll-progress` div-ийг script өөрөө үүсгэж `document.body`-д нэмдэг.
+
+- Dependency-гүй, vanilla JS. Зөвхөн `requestAnimationFrame` + `transform: scaleX()` ашигладаг (`width`/`left` animation байхгүй), `transform-origin: left`, өнгө нь одоогийн `#4e6cda` (royal blue).
+- Progress = `scrollY / (document.documentElement.scrollHeight - window.innerHeight)`, `[0, 1]`-д clamp хийгдсэн.
+- Харагдах утга бодит target руу **wall-clock (`performance.now()`) — суурьтай ease-out** interpolation-оор ойртдог: target өөрчлөгдсөн мөчийн `timestamp`-аас хамгийн ихдээ 100ms дотор яг target утганд хүрэхийг баталгаажуулдаг — энэ нь `requestAnimationFrame`-ийн бодит frame cadence тогтворгүй үед ч (жишээ нь том static scroll jump хийхэд browser main thread түр blocked болох үед) 100ms-ийн хязгаарыг зөрчихгүй байхыг frame-independent байдлаар баталгаажуулна.
+- `ResizeObserver`-оор `document.documentElement` болон `document.body`-г ажиглаж, height өөрчлөгдөх бүрд (жишээ нь зураг ачаалагдаж layout өөрчлөгдөх үед) дахин тооцоолдог; бүрэн ачаалаагүй `<img>`-үүдийн `load` event-ийг мөн сонсдог.
+- `scroll` болон `resize` native event-үүдийг зөвхөн уншихад (progress тооцоход) ашигладаг — native scrolling-ийг өөрчлөх, hijack хийх, custom scroll container нэмэх, anchor behavior өөрчлөх зэрэг ямар ч зүйл хийдэггүй.
+- Bar нь `position: fixed`, `pointer-events: none`, document flow-д оролцдоггүй тул layout shift үүсгэдэггүй.
+- `prefers-reduced-motion: reduce` үед interpolation-гүйгээр target утга руу шууд `scaleX()`-ийг шинэчилдэг.
+- **Дахин initialize-д аюулгүй**: script хэд ч удаа ажиллуулсан (жишээ нь давхар `<script>` tag) өмнөх бүх listener (`scroll`, `resize`, `ResizeObserver`, зураг `load`, `prefers-reduced-motion` change), pending `requestAnimationFrame`, болон script-ийн үүсгэсэн bar element-ийг бүрэн цэвэрлээд шинээр эхэлдэг — давхар bar эсвэл давхар listener үлдэхгүй.
+- **Бүрэн тусгаарлагдсан**: `motion-scroll-progress.css`/`.js`-ийн `<link>`/`<script>` мөрүүд эсвэл 2 файлыг устгавал bar бүр мөсөн алга болж, native scroll behavior 100% хэвээрээ үлдэнэ (учир нь script scroll-ийг зөвхөн уншсан, өөрчлөөгүй).
 
 ## Хэрэглээ
 
