@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="motion-magnetic-button.css">
+  <link rel="stylesheet" href="motion-spotlight-hover.css">
 </head>
 <body>
 
@@ -49,7 +50,7 @@
   <!-- Full Self-Driving feature -->
   <section class="section">
     <div class="container">
-      <div class="fsd-card">
+      <div class="fsd-card" data-motion-target="spotlight-hover spotlight-light">
         <div class="fsd-card__content">
           <div class="fsd-card__top">
             <div class="fsd-card__title-block">
@@ -84,7 +85,7 @@
     <div class="container">
       <div class="product-slider">
         <div class="product-slider__track">
-          <article class="product-card">
+          <article class="product-card" data-motion-target="spotlight-hover spotlight-image">
             <img src="assets/images/product-modely-l.png" alt="Model Y L Premium" class="product-card__bg">
             <div class="product-card__top">
               <p class="tagline">Long Wheelbase Midsize SUV</p>
@@ -98,7 +99,7 @@
               </div>
             </div>
           </article>
-          <article class="product-card">
+          <article class="product-card" data-motion-target="spotlight-hover spotlight-image">
             <img src="assets/images/product-model3.png" alt="Model 3" class="product-card__bg">
             <div class="product-card__top">
               <p class="tagline">Sport Sedan</p>
@@ -112,7 +113,7 @@
               </div>
             </div>
           </article>
-          <article class="product-card">
+          <article class="product-card" data-motion-target="spotlight-hover spotlight-image">
             <img src="assets/images/product-modely.png" alt="Model Y" class="product-card__bg">
             <div class="product-card__top">
               <p class="tagline">Midsize SUV</p>
@@ -150,7 +151,7 @@
   <section class="section">
     <div class="container">
       <div class="info-row">
-        <div class="info-card">
+        <div class="info-card" data-motion-target="spotlight-hover spotlight-light">
           <div class="info-card__content">
             <div class="info-card__text">
               <h3 class="heading-5">Current Offers</h3>
@@ -164,7 +165,7 @@
             <img src="assets/images/offers-cars.png" alt="Tesla vehicle lineup">
           </div>
         </div>
-        <div class="info-card">
+        <div class="info-card" data-motion-target="spotlight-hover spotlight-light">
           <div class="info-card__content">
             <div class="info-card__text">
               <h3 class="heading-5">Inventory</h3>
@@ -231,7 +232,7 @@
     <div class="container">
       <div class="product-slider">
         <div class="product-slider__track">
-          <article class="product-card">
+          <article class="product-card" data-motion-target="spotlight-hover spotlight-image">
             <img src="assets/images/product-solar.png" alt="Solar Panels" class="product-card__bg">
             <div class="product-card__top">
               <h3 class="heading-2">Solar Panels</h3>
@@ -244,7 +245,7 @@
               </div>
             </div>
           </article>
-          <article class="product-card">
+          <article class="product-card" data-motion-target="spotlight-hover spotlight-image">
             <img src="assets/images/product-powerwall.png" alt="Powerwall" class="product-card__bg">
             <div class="product-card__top">
               <h3 class="heading-2">Powerwall</h3>
@@ -298,5 +299,6 @@
   </footer>
 
   <script src="motion-magnetic-button.js" defer></script>
+  <script src="motion-spotlight-hover.js" defer></script>
 </body>
 </html>

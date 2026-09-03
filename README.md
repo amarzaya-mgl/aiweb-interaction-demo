@@ -15,6 +15,8 @@ project/
 ├── styles.css
 ├── motion-magnetic-button.css   # opt-in enhancement, see below
 ├── motion-magnetic-button.js    # opt-in enhancement, see below
+├── motion-spotlight-hover.css   # opt-in enhancement, see below
+├── motion-spotlight-hover.js    # opt-in enhancement, see below
 └── README.md
 ```
 
@@ -57,6 +59,18 @@ Cursor товчны influence area-д ороход товчийг pointer руу
 - `prefers-reduced-motion: reduce` эсвэл coarse/touch pointer үед бүрэн идэвхгүй (script эхэндээ л буцна, ямар ч listener бүртгэгдэхгүй).
 - Click behavior, keyboard focus, accessible name, хэмжээс өөрчлөгдөөгүй — зөвхөн `transform` нэмэгддэг тул reflow/layout shift үүсгэхгүй.
 - **Бүрэн тусгаарлагдсан**: `index.html`-аас `motion-magnetic-button.css`-ийн `<link>`, `motion-magnetic-button.js`-ийн `<script>` мөрүүдийг устгаад (эсвэл 2 файлыг устгаад) сайт яг анхны static байдалдаа буцна — `data-motion-target` attribute үлдсэн ч байсан engine байхгүй бол ямар ч нөлөө үзүүлэхгүй.
+
+### Spotlight Hover (`motion-spotlight-hover.css` / `.js`)
+
+Cursor card-ын дотор шилжихэд pointer-ийг дагасан зөөлөн `radial-gradient` glow гарч ирдэг interaction. Зөвхөн `[data-motion-target~="spotlight-hover"]` attribute-тай card-уудад үйлчилнэ (одоогоор `.fsd-card`, `.info-card` × 2, `.product-card` × 5).
+
+- Dependency-гүй, vanilla JS. Spotlight нь card-ын `::after` pseudo-element дээр `radial-gradient` background-аар render хийгддэг, `pointer-events: none`, card-ын `overflow: hidden`/`border-radius`-аар автоматаар clip хийгдэнэ (markup-д нэмэлт element нэмэгддэггүй).
+- Pointer байрлалыг `--spot-x` / `--spot-y` CSS custom property-оор (идэвхтэй card-тай харьцуулсан normalized %) дамжуулдаг, ~260px radius.
+- Opacity variant: `data-motion-target="spotlight-hover spotlight-image"` → 0.16 (зурагтай card), `data-motion-target="spotlight-hover spotlight-light"` → 0.08 (цайвар/foreground card) — `--spot-opacity` custom property-оор удирддаг.
+- Fade-in 180ms, fade-out 300ms, CSS `transition: opacity` ашигладаг (давхар/permanent glow, нэмэлт border үүсгэдэггүй).
+- Update бүрийг нэг `requestAnimationFrame` дотор coalesce хийдэг: бүх card-ын `getBoundingClientRect()` read эхэлж уншигдаад, дараа нь class/style write хийгддэг тул нэг frame дотор давхар layout thrashing үүсгэхгүй. Нэг удаад зөвхөн нэг card идэвхтэй байна.
+- Touch/coarse pointer болон `prefers-reduced-motion: reduce` үед `::after`-ийг бүрэн `display: none` болгодог тул анхны static харагдац хэвээр үлдэнэ.
+- **Бүрэн тусгаарлагдсан**: `motion-spotlight-hover.css`/`.js`-ийн `<link>`/`<script>` мөрүүд эсвэл 2 файлыг устгавал card-уудын markup, хэмжээс, өнгө, image crop бүгд яг хэвээрээ анхны static байдалдаа буцна.
 
 ## Хэрэглээ
 
