@@ -17,6 +17,8 @@ project/
 ├── motion-magnetic-button.js    # opt-in enhancement, see below
 ├── motion-spotlight-hover.css   # opt-in enhancement, see below
 ├── motion-spotlight-hover.js    # opt-in enhancement, see below
+├── motion-morphing-tabs.css     # opt-in enhancement, see below
+├── motion-morphing-tabs.js      # opt-in enhancement, see below
 └── README.md
 ```
 
@@ -71,6 +73,20 @@ Cursor card-ын дотор шилжихэд pointer-ийг дагасан зө�
 - Update бүрийг нэг `requestAnimationFrame` дотор coalesce хийдэг: бүх card-ын `getBoundingClientRect()` read эхэлж уншигдаад, дараа нь class/style write хийгддэг тул нэг frame дотор давхар layout thrashing үүсгэхгүй. Нэг удаад зөвхөн нэг card идэвхтэй байна.
 - Touch/coarse pointer болон `prefers-reduced-motion: reduce` үед `::after`-ийг бүрэн `display: none` болгодог тул анхны static харагдац хэвээр үлдэнэ.
 - **Бүрэн тусгаарлагдсан**: `motion-spotlight-hover.css`/`.js`-ийн `<link>`/`<script>` мөрүүд эсвэл 2 файлыг устгавал card-уудын markup, хэмжээс, өнгө, image crop бүгд яг хэвээрээ анхны static байдалдаа буцна.
+
+### Morphing Tabs — shared-layout indicator (`motion-morphing-tabs.css` / `.js`)
+
+Inventory card дотор "New" / "Pre-Owned" хоёр товчийг accessible tablist болгосон interaction. Сонгогдсон tab-ын ард нэг shared white pill indicator `translate` + `scale`-ээр morph хийж шилждэг (width/left animation ашигладаггүй). Зөвхөн `[data-motion-target~="morphing-tabs-shared-layout"]` attribute-тай `role="tablist"` element-үүдэд үйлчилнэ.
+
+- Dependency-гүй, vanilla JS. Indicator нь 1×1px үндсэн хэмжээтэй `<span class="tabs__indicator">`, сонгогдсон tab-ын bounding box-ыг `scale(w, h) translate(x, y)`-аар дуурайдаг — width/left recalculation хийдэггүй тул reflow-гүй, GPU-friendly.
+- Markup: `role="tablist"` container, тус бүр нь `role="tab"`, `aria-selected`, `id`/`aria-controls` (`#inventory-panel`-руу), `tabindex` (сонгогдсон нь `0`, бусад нь `-1`) бүхий `<button>`. Panel нь `role="tabpanel"` + `aria-labelledby`-ийг сонголт бүрт шинэчилдэг.
+- Keyboard: `ArrowLeft`/`ArrowRight` (wrap-аар зэргэлдээ tab руу), `Home`/`End` (эхний/сүүлийн tab руу) — сонгосон tab шууд focus авна (roving tabindex pattern).
+- Default сонголт: **New** (`aria-selected="true"`, indicator анхны paint-д шууд байрлана, transition-гүйгээр).
+- Timing: indicator transition 400ms `cubic-bezier(.22,1,.36,1)` (360–440ms хязгаарт), сонгогдсон label-ийн emphasis (opacity+color) 160ms crossfade (140–180ms хязгаарт).
+- `ResizeObserver`-оор tablist болон tab бүрийг ажиглаж, хэмжээ өөрчлөгдвөл (жишээ нь mobile breakpoint дээр tab-ууд full-width болох үед) indicator-ийг animation-гүйгээр шууд дахин байрлуулдаг.
+- `prefers-reduced-motion: reduce` үед indicator transition-гүйгээр шууд сонгогдсон байрлал руу шилждэг (`transition-duration: 0s`), label crossfade мөн идэвхгүй.
+- Focus-ийг royal-blue `outline` (`:focus-visible`)-ээр харуулдаг, эргэн тойрны card content (heading, text, image) хөдлөхгүй.
+- **Бүрэн тусгаарлагдсан**: `motion-morphing-tabs.css`/`.js`-ийн `<link>`/`<script>` мөрүүд эсвэл 2 файлыг устгавал tab-ууд энгийн (indicator-гүй, `aria-selected` toggle-гүй) товч хэлбэрээрээ үлдэнэ — markup дахь `role`/`aria-*` attribute-ууд өөрөө хор хөнөөлгүй, зөвхөн CSS/JS engine байхгүй бол тэдгээр нь нөлөөгүй болно.
 
 ## Хэрэглээ
 

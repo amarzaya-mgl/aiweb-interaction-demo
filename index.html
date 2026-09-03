@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="motion-magnetic-button.css">
   <link rel="stylesheet" href="motion-spotlight-hover.css">
+  <link rel="stylesheet" href="motion-morphing-tabs.css">
 </head>
 <body>
 
@@ -171,12 +172,22 @@
               <h3 class="heading-5">Inventory</h3>
               <p class="text-regular">Find new and Certified Pre-Owned Tesla vehicles available immediately.</p>
             </div>
-            <div class="info-card__actions info-card__actions--multi">
-              <a href="#" class="btn btn--secondary" data-motion-target="magnetic-button">New</a>
-              <a href="#" class="btn btn--secondary" data-motion-target="magnetic-button">Pre-Owned</a>
+            <div
+              class="info-card__actions info-card__actions--multi tabs"
+              data-motion-target="morphing-tabs-shared-layout"
+              role="tablist"
+              aria-label="Inventory filter"
+            >
+              <span class="tabs__indicator" aria-hidden="true"></span>
+              <button type="button" class="btn btn--secondary tabs__tab" role="tab" id="inventory-tab-new" aria-controls="inventory-panel" aria-selected="true" tabindex="0" data-tab="new">
+                <span class="tabs__label">New</span>
+              </button>
+              <button type="button" class="btn btn--secondary tabs__tab" role="tab" id="inventory-tab-pre-owned" aria-controls="inventory-panel" aria-selected="false" tabindex="-1" data-tab="pre-owned">
+                <span class="tabs__label">Pre-Owned</span>
+              </button>
             </div>
           </div>
-          <div class="info-card__image">
+          <div class="info-card__image" id="inventory-panel" role="tabpanel" aria-labelledby="inventory-tab-new">
             <img src="assets/images/inventory-cars.png" alt="Tesla vehicle inventory">
           </div>
         </div>
@@ -300,5 +311,6 @@
 
   <script src="motion-magnetic-button.js" defer></script>
   <script src="motion-spotlight-hover.js" defer></script>
+  <script src="motion-morphing-tabs.js" defer></script>
 </body>
 </html>
