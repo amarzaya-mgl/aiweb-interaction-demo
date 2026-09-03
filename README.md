@@ -1,6 +1,6 @@
 # Tesla Model 3 — Static Landing Page
 
-Figma design-ийн дагуу угсарсан static HTML/CSS website. Одоогийн байдлаар ямар ч motion, animation, transition, JavaScript interaction ороогүй — цэвэр бүтэц, semantic HTML, plain CSS.
+Figma design-ийн дагуу угсарсан static HTML/CSS website. Үндсэн бүтэц нь цэвэр semantic HTML + plain CSS; motion/interaction-уудыг тусад нь, бүтцийг эвдэхгүйгээр давхарлаж нэмдэг (доор "Motion enhancements" хэсгийг үзнэ үү).
 
 Figma source: https://www.figma.com/design/Xz1OJJ6NSkKJRZKcuSO52F/Student-work?node-id=491-221
 
@@ -13,6 +13,8 @@ project/
 │   └── icons/      # SVG icons (slider arrows, stat badges)
 ├── index.html
 ├── styles.css
+├── motion-magnetic-button.css   # opt-in enhancement, see below
+├── motion-magnetic-button.js    # opt-in enhancement, see below
 └── README.md
 ```
 
@@ -43,6 +45,18 @@ project/
 - Slider-ууд (`.product-slider__track`) одоогоор CSS `overflow-x: auto` scroll ашигладаг — JS-т суурилсан carousel behavior-оор сольж болно (dots/arrows аль хэдийн markup дотор бэлэн байгаа, зөвхөн `aria-label`-тай `<button>` тул click handler холбоход бэлэн).
 - Bounding structure (container/section hierarchy) өөрчлөгдөхгүйгээр `transition`, `@keyframes`, `IntersectionObserver`-based reveal, зэргийг чөлөөтэй нэмж болно.
 - Comment эсвэл inline style нэмэгдээгүй — цэвэр static markup учир aggresive өөрчлөлт хийхэд саад болохгүй.
+
+## Motion enhancements
+
+### Magnetic Button (`motion-magnetic-button.css` / `.js`)
+
+Cursor товчны influence area-д ороход товчийг pointer руу зөөлөн татдаг, `pointerleave` үед 420–520ms spring-overshoot-той анхны байрлалд буцдаг interaction. Зөвхөн `[data-motion-target~="magnetic-button"]` attribute-тай element-үүдэд үйлчилнэ (одоогоор бүх `.btn`).
+
+- Dependency-гүй, vanilla JS. `requestAnimationFrame` + `transform` (`translate3d`) л ашигладаг.
+- X/Y тэнхлэг тус бүр хамгийн ихдээ ±8px, товчны label 40% parallax-аар дагана.
+- `prefers-reduced-motion: reduce` эсвэл coarse/touch pointer үед бүрэн идэвхгүй (script эхэндээ л буцна, ямар ч listener бүртгэгдэхгүй).
+- Click behavior, keyboard focus, accessible name, хэмжээс өөрчлөгдөөгүй — зөвхөн `transform` нэмэгддэг тул reflow/layout shift үүсгэхгүй.
+- **Бүрэн тусгаарлагдсан**: `index.html`-аас `motion-magnetic-button.css`-ийн `<link>`, `motion-magnetic-button.js`-ийн `<script>` мөрүүдийг устгаад (эсвэл 2 файлыг устгаад) сайт яг анхны static байдалдаа буцна — `data-motion-target` attribute үлдсэн ч байсан engine байхгүй бол ямар ч нөлөө үзүүлэхгүй.
 
 ## Хэрэглээ
 
