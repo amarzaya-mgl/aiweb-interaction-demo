@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import SpotlightCard from "./SpotlightCard";
 import MagneticButton from "./MagneticButton";
+import { supabase } from "@/lib/supabase";
 
 interface FormValues {
   name: string;
@@ -42,6 +43,8 @@ export default function ContactForm() {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<Partial<FormValues>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   function handleChange(field: keyof FormValues) {
     return (e: ChangeEvent<HTMLInputElement>) => {
@@ -50,14 +53,30 @@ export default function ContactForm() {
     };
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const nextErrors = validate(values);
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length === 0) {
-      setSubmitted(true);
-      setValues(initialValues);
+    if (Object.keys(nextErrors).length > 0) return;
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    const { error } = await supabase.from("contact_submissions").insert({
+      name: values.name.trim(),
+      email: values.email.trim(),
+      phone: values.phone.trim(),
+    });
+
+    setSubmitting(false);
+
+    if (error) {
+      setSubmitError("Илгээхэд алдаа гарлаа. Дахин оролдоно уу.");
+      return;
     }
+
+    setSubmitted(true);
+    setValues(initialValues);
   }
 
   return (
@@ -81,6 +100,15 @@ export default function ContactForm() {
             className="rounded-md border border-royal-blue/30 bg-royal-blue/10 px-4 py-3 text-sm font-medium text-royal-blue"
           >
             Баярлалаа! Таны хүсэлтийг хүлээн авлаа.
+          </div>
+        )}
+
+        {submitError && (
+          <div
+            role="alert"
+            className="rounded-md border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-600"
+          >
+            {submitError}
           </div>
         )}
 
@@ -155,8 +183,13 @@ export default function ContactForm() {
           </div>
 
           <div className="flex pt-2">
-            <MagneticButton type="submit" variant="primary" className="w-full sm:w-auto">
-              Илгээх
+            <MagneticButton
+              type="submit"
+              variant="primary"
+              className="w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+              disabled={submitting}
+            >
+              {submitting ? "Илгээж байна..." : "Илгээх"}
             </MagneticButton>
           </div>
         </form>
